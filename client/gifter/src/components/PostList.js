@@ -3,19 +3,25 @@ import { PostContext } from "../providers/PostProvider";
 import Post from "./Post";
 
 const PostList = () => {
-    const { posts, getAllPosts } = useContext(PostContext);
+    const { posts, getAllPosts, results } = useContext(PostContext);
 
     useEffect(() => {
-        getAllPosts();
+        getAllPosts()
     }, []);
 
     return (
         <div className="container">
             <div className="row justify-content-center">
                 <div className="cards-column">
-                    {posts.map((post) => (
-                        <Post key={post.id} post={post} />
-                    ))}
+                    {
+                        (results.length)
+                            ? results.map((post) => (
+                                <Post key={post.id} post={post} />
+                            ))
+                            : posts.map((post) => (
+                                <Post key={post.id} post={post} />
+                            ))
+                    }
                 </div>
             </div>
         </div>
