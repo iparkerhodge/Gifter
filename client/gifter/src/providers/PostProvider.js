@@ -4,7 +4,6 @@ export const PostContext = React.createContext();
 
 export const PostProvider = (props) => {
     const [posts, setPosts] = useState([]);
-    const [results, set] = useState([])
 
     const getAllPosts = () => {
         return fetch("api/post")
@@ -23,13 +22,17 @@ export const PostProvider = (props) => {
     };
 
     const searchPosts = (q) => {
+        if (!q) {
+            getAllPosts()
+            return
+        }
         return fetch(`api/post/search?q=${q}`)
             .then((res) => res.json())
-            .then(set)
+            .then(setPosts)
     }
 
     return (
-        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, results }}>
+        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts }}>
             {props.children}
         </PostContext.Provider>
     );

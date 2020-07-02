@@ -1,31 +1,24 @@
-import React, { useContext, useEffect } from "react";
-import { PostContext } from "../providers/PostProvider";
+import React from 'react'
 import Post from "./Post";
 
-const PostList = () => {
-    const { posts, getAllPosts, results } = useContext(PostContext);
+const PostList = ({ list }) => {
 
-    useEffect(() => {
-        getAllPosts()
-    }, []);
-
+    console.log(list)
     return (
         <div className="container">
             <div className="row justify-content-center">
                 <div className="cards-column">
                     {
-                        (results.length)
-                            ? results.map((post) => (
+                        (list.length)
+                            ? list.map((post) => (
                                 <Post key={post.id} post={post} />
                             ))
-                            : posts.map((post) => (
-                                <Post key={post.id} post={post} />
-                            ))
+                            : <div className="alert alert-secondary mt-1" role="alert"> No posts were found.</div>
                     }
                 </div>
             </div>
         </div>
     );
-};
+}
 
-export default PostList;
+export default PostList

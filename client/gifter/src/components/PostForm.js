@@ -17,8 +17,6 @@ const AddPostForm = () => {
             DateCreated: new Date(),
             UserProfileId: 2
         }
-
-        debugger
         addPost(Post)
     }
 

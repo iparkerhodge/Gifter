@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce'
 const SearchPosts = () => {
     const { searchPosts } = useContext(PostContext)
 
-    const debouncedSearchPosts = debounce(searchPosts, 300)
+    const debouncedSearchPosts = debounce(searchPosts, 400)
     const handleChange = (e) => {
         debouncedSearchPosts(e.target.value)
     }
