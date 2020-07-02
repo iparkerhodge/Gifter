@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
-import { InputGroup, Input, InputGroupAddon, Button } from 'reactstrap'
+import { Input } from 'reactstrap'
 import { PostContext } from '../providers/PostProvider'
+import debounce from 'lodash.debounce'
 
 const SearchPosts = () => {
     const { searchPosts } = useContext(PostContext)
 
+    const debouncedSearchPosts = debounce(searchPosts, 300)
     const handleChange = (e) => {
-        console.log(e.target.value)
-        searchPosts(e.target.value)
+        debouncedSearchPosts(e.target.value)
     }
 
     return (
