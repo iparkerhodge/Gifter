@@ -41,10 +41,21 @@ export const PostProvider = (props) => {
             .then(setPosts);
     };
 
+    const addCommentToPost = (comment) => {
+        return fetch("api/comment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(comment),
+        });
+    }
+
     return (
         <PostContext.Provider value={{
             posts, getAllPosts, addPost,
-            searchPosts, getPost, getPostsByUser
+            searchPosts, getPost, getPostsByUser,
+            addCommentToPost
         }}>
             {props.children}
         </PostContext.Provider>
