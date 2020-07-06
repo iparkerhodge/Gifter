@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Input } from 'reactstrap'
-import { PostContext } from '../providers/PostProvider'
+import { PostContext } from '../../providers/PostProvider'
 import debounce from 'lodash.debounce'
 
 const SearchPosts = () => {
