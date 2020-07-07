@@ -10,12 +10,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <PostProvider>
-          <UserProvider>
+        <UserProvider>
+          <PostProvider>
             <Header />
             <ApplicationViews />
-          </UserProvider>
-        </PostProvider>
+          </PostProvider>
+        </UserProvider>
       </Router>
     </div>
   );

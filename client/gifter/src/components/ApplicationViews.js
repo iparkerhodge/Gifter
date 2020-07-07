@@ -1,28 +1,41 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React, { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 import PostList from "./posts/PostList";
 import PostForm from "./posts/PostForm";
 import PostDetails from "./posts/PostDetails";
 import UserPosts from "./users/UserPosts";
+import { UserContext } from "../providers/UserProvider";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 const ApplicationViews = () => {
+    const { isLoggedIn } = useContext(UserContext)
     return (
         <Switch>
             <Route path="/posts/add">
-                <PostForm />
+                {isLoggedIn ? <PostForm /> : <Redirect to='/login' />}
             </Route>
 
             <Route path="/posts/:id">
-                <PostDetails />
+                {isLoggedIn ? <PostDetails /> : <Redirect to='/login' />}
             </Route>
 
             <Route path="/users/:id">
-                <UserPosts />
+                {isLoggedIn ? <UserPosts /> : <Redirect to='/login' />}
             </Route>
 
             <Route path="/" exact>
-                <PostList />
+                {isLoggedIn ? <PostList /> : <Redirect to='/login' />}
             </Route>
+
+            <Route path="/login">
+                <Login />
+            </Route>
+
+            <Route path="/register">
+                <Register />
+            </Route>
+
         </Switch>
     );
 };

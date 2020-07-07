@@ -15,6 +15,7 @@ const Post = ({ post }) => {
     const handleSubmit = () => {
         const comment = {
             userProfileId: 2,
+            //^This needs to be changed to current user once auth exist
             postId: post.id,
             message: text.current.value
         }
@@ -43,7 +44,7 @@ const Post = ({ post }) => {
                 }
                 <InputGroup className='mt-1 mb-1 mr-1'>
                     <Input placeholder='Add Comment' innerRef={text} />
-                    <InputGroupAddon addonType='append' className>
+                    <InputGroupAddon addonType='append'>
                         <Button onClick={handleSubmit}>+</Button>
                     </InputGroupAddon>
                 </InputGroup>

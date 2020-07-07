@@ -19,6 +19,7 @@ const AddPostForm = () => {
             Caption: Caption.current.value,
             DateCreated: new Date(),
             UserProfileId: 2
+            //^^This needs to be updated once auth exists
         }
         addPost(Post).then(() => {
             history.push("/")
