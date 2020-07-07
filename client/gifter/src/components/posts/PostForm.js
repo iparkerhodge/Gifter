@@ -18,7 +18,7 @@ const AddPostForm = () => {
             ImageUrl: ImageUrl.current.value,
             Caption: Caption.current.value,
             DateCreated: new Date(),
-            UserProfileId: 2
+            UserProfileId: JSON.parse(sessionStorage.getItem("userProfile")).id
             //^^This needs to be updated once auth exists
         }
         addPost(Post).then(() => {
