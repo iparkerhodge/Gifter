@@ -7,7 +7,7 @@ const Comment = ({ comment }) => {
         <Card className='text-left'>
             <CardBody>
                 {comment.message}<br />
-                <CardLink>
+                <CardLink to={`/users/${comment.userProfileId}`}>
                     <Link to={`/users/${comment.userProfileId}`}>
                         <small className="text-left px-2">{comment.userProfile.name}</small>
                     </Link>

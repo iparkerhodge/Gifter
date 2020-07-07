@@ -14,7 +14,7 @@ const Post = ({ post }) => {
 
     const handleSubmit = () => {
         const comment = {
-            userProfileId: 2,
+            userProfileId: JSON.parse(sessionStorage.getItem("userProfile")).id,
             //^This needs to be changed to current user once auth exist
             postId: post.id,
             message: text.current.value

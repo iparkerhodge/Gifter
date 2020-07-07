@@ -6,18 +6,18 @@ import { UserContext } from "../../providers/UserProvider";
 
 const UserPosts = () => {
     const { posts, getPostsByUser } = useContext(PostContext);
-    const { users, getUser } = useContext(UserContext)
+    const { user, getUserById } = useContext(UserContext)
 
     const { id } = useParams();
 
     useEffect(() => {
         getPostsByUser(id)
-        getUser(id)
+        getUserById(id)
     }, []);
 
     return (
         <div className="container">
-            <h1>{users.name}'s Posts</h1>
+            <h1>{user.name}'s Posts</h1>
             <div className="row justify-content-center">
                 <div className="cards-column">
                     {

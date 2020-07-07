@@ -6,6 +6,7 @@ import "firebase/auth";
 export const UserContext = createContext();
 
 export function UserProvider(props) {
+    const [user, setUser] = useState({})
     const apiUrl = "/api/userprofile";
 
     const userProfile = sessionStorage.getItem("userProfile");
@@ -61,8 +62,19 @@ export function UserProvider(props) {
             }).then(resp => resp.json()));
     };
 
+    const getUserById = (id) => {
+        return getToken().then((token) =>
+            fetch(`/api/userprofile/user/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json()))
+            .then(setUser);
+    };
+
     return (
-        <UserContext.Provider value={{ isLoggedIn, login, logout, register, getToken }}>
+        <UserContext.Provider value={{ isLoggedIn, login, logout, register, getToken, getUserById, user }}>
             {isFirebaseReady
                 ? props.children
                 : <Spinner className="app-spinner dark" />}
